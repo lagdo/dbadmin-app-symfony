@@ -1,0 +1,45 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        bind:
+            $projectDir: '%kernel.project_dir%'
+    DbAdmin\Symfony\:
+        resource: '../'
+        exclude:
+            - '../helpers.php'
+            - '../Facade'
+
+    DbAdmin\Symfony\Controller\DbAdminController:
+        public: true
+        tags:
+            - controller.service_arguments
+    DbAdmin\Symfony\Routing\DbAuditRouteLoader:
+        tags:
+            - { name: routing.loader }
+
+    Lagdo\DbAdmin\Support\Provider\AuthInterface:
+        public: true
+        factory: ['DbAdmin\Symfony\Factory\DbAdminFactory', 'auth']
+    Lagdo\DbAdmin\Driver\Utils\TranslatorInterface:
+        public: true
+        factory: ['DbAdmin\Symfony\Factory\DbAdminFactory', 'trans']
+    jaxon.service_locator:
+        public: true
+        class: Symfony\Component\DependencyInjection\ServiceLocator
+        tags: ['container.service_locator']
+        arguments:
+            -
+                Psr\Log\LoggerInterface: '@logger'
+                Twig\Environment: '@twig'
+    lagdo.facades.service_locator:
+        public: true
+        class: Symfony\Component\DependencyInjection\ServiceLocator
+        tags: ['container.service_locator']
+        arguments:
+            -
+                Psr\Log\LoggerInterface: '@logger'
+                Twig\Environment: '@twig'
+                Symfony\Bundle\SecurityBundle\Security: '@security.helper'
+                Symfony\Component\Routing\Generator\UrlGeneratorInterface: '@router.default'
+                Symfony\Component\Security\Http\Logout\LogoutUrlGenerator: '@security.logout_url_generator'

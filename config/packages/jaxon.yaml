@@ -1,0 +1,40 @@
+parameters:
+    jaxon:
+        app:
+            metadata:
+                cache:
+                    enabled: true
+                    dir: '%kernel.project_dir%/var/dbadmin'
+            template:
+                name: bootstrap5
+                assets:
+                    url: "/dbadmin"
+            assets:
+                export: true
+                minify: true
+                uri: /jaxon/app-0.9.0
+                dir: '%kernel.project_dir%/public/jaxon/app-0.9.0'
+                # file' => '',
+            dialogs:
+                default:
+                    modal: bootbox
+                    alert: sweetalert
+                    confirm: sweetalert
+                lib:
+                    use:
+                        - butterup
+
+        lib:
+            core:
+                debug:
+                    on: false
+                    verbose: false
+                # request:
+                #     uri: "/jaxon"
+                prefix:
+                    class: ""
+                error:
+                    handle: false
+            js:
+                lib:
+                    uri: '/jaxon/lib-5.2.5'

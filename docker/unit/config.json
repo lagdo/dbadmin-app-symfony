@@ -1,0 +1,44 @@
+{
+    "listeners": {
+        "*:8080": {
+            "pass": "routes"
+        }
+    },
+
+    "routes": [
+        {
+            "match": {
+                "uri": [
+                    "*.php",
+                    "*.php/*"
+                ]
+            },
+            "action": {
+                "pass": "applications/dbadmin/direct"
+            }
+        },
+        {
+            "action": {
+                "share": "/var/www/public$uri",
+                "fallback": {
+                    "pass": "applications/dbadmin/index"
+                }
+            }
+        }
+    ],
+
+    "applications": {
+        "dbadmin": {
+            "type": "php",
+            "targets": {
+                "direct": {
+                    "root": "/var/www/public/"
+                },
+                "index": {
+                    "root": "/var/www/public/",
+                    "script": "index.php"
+                }
+            }
+        }
+    }
+}

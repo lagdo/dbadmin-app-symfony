@@ -1,0 +1,639 @@
+jaxon.config.requestURI = '/jaxon';
+jaxon.config.statusMessages = false;
+jaxon.config.waitCursor = true;
+jaxon.config.version = 'Jaxon 5.x';
+jaxon.config.defaultMode = 'asynchronous';
+jaxon.config.defaultMethod = 'POST';
+jaxon.config.responseType = 'JSON';
+
+jaxon.dom.ready(() => jaxon.processCustomAttrs());
+
+jaxon.dom.ready(() => jaxon.dialog.config({"labels":{"confirm":{"yes":"Yes","no":"No"}},"defaults":{"modal":"bootbox","alert":"sweetalert","confirm":"sweetalert"}}));
+
+const jx = {
+  rc: (name, method, parameters, options = {}) => jaxon.request({ type: 'class', name, method }, { parameters, ...options}),
+  rf: (name, parameters, options = {}) => jaxon.request({ type: 'func', name }, { parameters, ...options}),
+  c0: 'Lagdo.DbAdmin.App.Ajax.Admin.AppFunc',
+  c1: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Command.Query.Favorite',
+  c2: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Command.Query.FavoriteFunc',
+  c3: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Command.Query.FavoritePage',
+  c4: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Command.Query.History',
+  c5: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Command.Query.HistoryPage',
+  c6: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Database.Database',
+  c7: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Database.EditorFunc',
+  c8: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Database.Events',
+  c9: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Database.Export',
+  c10: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Database.Import',
+  c11: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Database.QueryEditor',
+  c12: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Database.Routines',
+  c13: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Database.Sequences',
+  c14: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Database.Tables',
+  c15: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Database.UserTypes',
+  c16: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Database.Views',
+  c17: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.QueryBuilder.Fields.Columns',
+  c18: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.QueryBuilder.Fields.Filters',
+  c19: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.QueryBuilder.Fields.Foreigns',
+  c20: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.QueryBuilder.Fields.Form.Columns',
+  c21: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.QueryBuilder.Fields.Form.Filters',
+  c22: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.QueryBuilder.Fields.Form.Sorters',
+  c23: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.QueryBuilder.Fields.Sorters',
+  c24: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.QueryBuilder.Values',
+  c25: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Server.Databases',
+  c26: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Server.EditorFunc',
+  c27: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Server.Export',
+  c28: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Server.Import',
+  c29: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Server.Privilege',
+  c30: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Server.Privileges',
+  c31: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Server.Processes',
+  c32: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Server.QueryEditor',
+  c33: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Server.Status',
+  c34: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Server.Variables',
+  c35: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Table.Ddl.Alter',
+  c36: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Table.Ddl.Column.CreateFunc',
+  c37: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Table.Ddl.Column.DeleteFunc',
+  c38: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Table.Ddl.Column.MoveFunc',
+  c39: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Table.Ddl.Column.UpdateFunc',
+  c40: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Table.Ddl.Create',
+  c41: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Table.Ddl.SqlCodeFunc',
+  c42: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Table.Ddl.Table',
+  c43: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Table.Ddl.TableFunc',
+  c44: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Table.Dml.DeleteFunc',
+  c45: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Table.Dml.InsertFunc',
+  c46: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Table.Dml.SearchFunc',
+  c47: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Table.Dml.SqlCodeFunc',
+  c48: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Table.Dml.UpdateFunc',
+  c49: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Table.Dql.ResultSet',
+  c50: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Table.Dql.Select',
+  c51: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.View.Ddl.Form',
+  c52: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.View.Ddl.View',
+  c53: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.View.Ddl.ViewFunc',
+  c54: 'Lagdo.DbAdmin.App.Ajax.Admin.Db.View.Dql.Select',
+  c55: 'Lagdo.DbAdmin.App.Ajax.Admin.DbFunc',
+};
+
+Lagdo = {
+  DbAdmin: {
+    App: {
+      Ajax: {
+        Admin: {
+          AppFunc: {
+            start: (...args) => jx.rc(jx.c0, 'start', args, { bags: ["dbadmin.app","dbadmin","dbadmin.tab"], mode: 'synchronous' }),
+            addSavedTabs: (...args) => jx.rc(jx.c0, 'addSavedTabs', args, { bags: ["dbadmin.app","dbadmin","dbadmin.tab"], mode: 'synchronous' }),
+            addSavedTab: (...args) => jx.rc(jx.c0, 'addSavedTab', args, { bags: ["dbadmin.app","dbadmin","dbadmin.tab"], mode: 'synchronous' }),
+            addTab: (...args) => jx.rc(jx.c0, 'addTab', args, { bags: ["dbadmin.app","dbadmin","dbadmin.tab"] }),
+            delTab: (...args) => jx.rc(jx.c0, 'delTab', args, { bags: ["dbadmin.app","dbadmin","dbadmin.tab"] }),
+            editTabTitle: (...args) => jx.rc(jx.c0, 'editTabTitle', args, { bags: ["dbadmin.app","dbadmin","dbadmin.tab"] }),
+            saveTabTitle: (...args) => jx.rc(jx.c0, 'saveTabTitle', args, { bags: ["dbadmin.app","dbadmin","dbadmin.tab"] }),
+            saveAppTabs: (...args) => jx.rc(jx.c0, 'saveAppTabs', args, { bags: ["dbadmin.app","dbadmin","dbadmin.tab"] }),
+          },
+          Db: {
+            Command: {
+              Query: {
+                Favorite: {
+                  render: (...args) => jx.rc(jx.c1, 'render', args, { bags: ["dbadmin.app","dbadmin"] }),
+                },
+                FavoriteFunc: {
+                  add: (...args) => jx.rc(jx.c2, 'add', args, { bags: ["dbadmin.app","dbadmin"] }),
+                  create: (...args) => jx.rc(jx.c2, 'create', args, { bags: ["dbadmin.app","dbadmin"] }),
+                  edit: (...args) => jx.rc(jx.c2, 'edit', args, { bags: ["dbadmin.app","dbadmin"] }),
+                  update: (...args) => jx.rc(jx.c2, 'update', args, { bags: ["dbadmin.app","dbadmin"] }),
+                  delete: (...args) => jx.rc(jx.c2, 'delete', args, { bags: ["dbadmin.app","dbadmin"] }),
+                },
+                FavoritePage: {
+                  page: (...args) => jx.rc(jx.c3, 'page', args, { bags: ["dbadmin.app","dbadmin"] }),
+                },
+                History: {
+                  render: (...args) => jx.rc(jx.c4, 'render', args, { bags: ["dbadmin.app","dbadmin"] }),
+                },
+                HistoryPage: {
+                  page: (...args) => jx.rc(jx.c5, 'page', args, { bags: ["dbadmin.app","dbadmin"] }),
+                },
+              },
+            },
+            Database: {
+              Database: {
+                add: (...args) => jx.rc(jx.c6, 'add', args, { bags: ["dbadmin.app","dbadmin"] }),
+                create: (...args) => jx.rc(jx.c6, 'create', args, { bags: ["dbadmin.app","dbadmin"] }),
+                drop: (...args) => jx.rc(jx.c6, 'drop', args, { bags: ["dbadmin.app","dbadmin"] }),
+              },
+              EditorFunc: {
+                saveTabs: (...args) => jx.rc(jx.c7, 'saveTabs', args, { bags: ["dbadmin.app","dbadmin","dbadmin.tab"] }),
+                addTab: (...args) => jx.rc(jx.c7, 'addTab', args, { bags: ["dbadmin.app","dbadmin","dbadmin.tab"] }),
+                cloneTab: (...args) => jx.rc(jx.c7, 'cloneTab', args, { bags: ["dbadmin.app","dbadmin","dbadmin.tab"] }),
+                delTab: (...args) => jx.rc(jx.c7, 'delTab', args, { bags: ["dbadmin.app","dbadmin","dbadmin.tab"] }),
+              },
+              Events: {
+                show: (...args) => jx.rc(jx.c8, 'show', args, { bags: ["dbadmin.app","dbadmin"] }),
+              },
+              Export: {
+                database: (...args) => jx.rc(jx.c9, 'database', args, { bags: ["dbadmin.app","dbadmin"] }),
+                export: (...args) => jx.rc(jx.c9, 'export', args, { bags: ["dbadmin.app","dbadmin"] }),
+              },
+              Import: {
+                database: (...args) => jx.rc(jx.c10, 'database', args, { bags: ["dbadmin.app","dbadmin"] }),
+                executeWebFile: (...args) => jx.rc(jx.c10, 'executeWebFile', args, { bags: ["dbadmin.app","dbadmin"] }),
+                executeQueriesInFile: (...args) => jx.rc(jx.c10, 'executeQueriesInFile', args, { bags: ["dbadmin.app","dbadmin"], callback: [jaxon.dbadmin.upload], upload: 'dbadmin-import-sql-files-input' }),
+              },
+              QueryEditor: {
+                database: (...args) => jx.rc(jx.c11, 'database', args, { bags: ["dbadmin.app","dbadmin","dbadmin.tab"] }),
+                exec: (...args) => jx.rc(jx.c11, 'exec', args, { bags: ["dbadmin.app","dbadmin","dbadmin.tab"] }),
+              },
+              Routines: {
+                show: (...args) => jx.rc(jx.c12, 'show', args, { bags: ["dbadmin.app","dbadmin"] }),
+              },
+              Sequences: {
+                show: (...args) => jx.rc(jx.c13, 'show', args, { bags: ["dbadmin.app","dbadmin"] }),
+              },
+              Tables: {
+                show: (...args) => jx.rc(jx.c14, 'show', args, { bags: ["dbadmin.app","dbadmin"] }),
+              },
+              UserTypes: {
+                show: (...args) => jx.rc(jx.c15, 'show', args, { bags: ["dbadmin.app","dbadmin"] }),
+              },
+              Views: {
+                show: (...args) => jx.rc(jx.c16, 'show', args, { bags: ["dbadmin.app","dbadmin"] }),
+              },
+            },
+            QueryBuilder: {
+              Fields: {
+                Columns: {
+                  edit: (...args) => jx.rc(jx.c17, 'edit', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder"] }),
+                  save: (...args) => jx.rc(jx.c17, 'save', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder"] }),
+                },
+                Filters: {
+                  edit: (...args) => jx.rc(jx.c18, 'edit', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder"] }),
+                  save: (...args) => jx.rc(jx.c18, 'save', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder"] }),
+                },
+                Foreigns: {
+                  toggle: (...args) => jx.rc(jx.c19, 'toggle', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder"] }),
+                },
+                Form: {
+                  Columns: {
+                    show: (...args) => jx.rc(jx.c20, 'show', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder"] }),
+                    add: (...args) => jx.rc(jx.c20, 'add', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder"] }),
+                    del: (...args) => jx.rc(jx.c20, 'del', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder"] }),
+                  },
+                  Filters: {
+                    show: (...args) => jx.rc(jx.c21, 'show', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder"] }),
+                    add: (...args) => jx.rc(jx.c21, 'add', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder"] }),
+                    del: (...args) => jx.rc(jx.c21, 'del', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder"] }),
+                  },
+                  Sorters: {
+                    show: (...args) => jx.rc(jx.c22, 'show', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder"] }),
+                    add: (...args) => jx.rc(jx.c22, 'add', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder"] }),
+                    del: (...args) => jx.rc(jx.c22, 'del', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder"] }),
+                  },
+                },
+                Sorters: {
+                  edit: (...args) => jx.rc(jx.c23, 'edit', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder"] }),
+                  save: (...args) => jx.rc(jx.c23, 'save', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder"] }),
+                  upsert: (...args) => jx.rc(jx.c23, 'upsert', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder"] }),
+                  remove: (...args) => jx.rc(jx.c23, 'remove', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder"] }),
+                },
+              },
+              Values: {
+                saveSelectLimit: (...args) => jx.rc(jx.c24, 'saveSelectLimit', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder"] }),
+                saveSelectTotal: (...args) => jx.rc(jx.c24, 'saveSelectTotal', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder"] }),
+                saveTextLength: (...args) => jx.rc(jx.c24, 'saveTextLength', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder"] }),
+              },
+            },
+            Server: {
+              Databases: {
+                show: (...args) => jx.rc(jx.c25, 'show', args, { bags: ["dbadmin.app","dbadmin"] }),
+              },
+              EditorFunc: {
+                saveTabs: (...args) => jx.rc(jx.c26, 'saveTabs', args, { bags: ["dbadmin.app","dbadmin","dbadmin.tab"] }),
+                addTab: (...args) => jx.rc(jx.c26, 'addTab', args, { bags: ["dbadmin.app","dbadmin","dbadmin.tab"] }),
+                cloneTab: (...args) => jx.rc(jx.c26, 'cloneTab', args, { bags: ["dbadmin.app","dbadmin","dbadmin.tab"] }),
+                delTab: (...args) => jx.rc(jx.c26, 'delTab', args, { bags: ["dbadmin.app","dbadmin","dbadmin.tab"] }),
+              },
+              Export: {
+                server: (...args) => jx.rc(jx.c27, 'server', args, { bags: ["dbadmin.app","dbadmin"] }),
+                export: (...args) => jx.rc(jx.c27, 'export', args, { bags: ["dbadmin.app","dbadmin"] }),
+              },
+              Import: {
+                server: (...args) => jx.rc(jx.c28, 'server', args, { bags: ["dbadmin.app","dbadmin"] }),
+                executeWebFile: (...args) => jx.rc(jx.c28, 'executeWebFile', args, { bags: ["dbadmin.app","dbadmin"] }),
+                executeQueriesInFile: (...args) => jx.rc(jx.c28, 'executeQueriesInFile', args, { bags: ["dbadmin.app","dbadmin"], callback: [jaxon.dbadmin.upload], upload: 'dbadmin-import-sql-files-input' }),
+              },
+              Privilege: {
+                add: (...args) => jx.rc(jx.c29, 'add', args, { bags: ["dbadmin.app","dbadmin"] }),
+                create: (...args) => jx.rc(jx.c29, 'create', args, { bags: ["dbadmin.app","dbadmin"] }),
+                edit: (...args) => jx.rc(jx.c29, 'edit', args, { bags: ["dbadmin.app","dbadmin"] }),
+                update: (...args) => jx.rc(jx.c29, 'update', args, { bags: ["dbadmin.app","dbadmin"] }),
+              },
+              Privileges: {
+                show: (...args) => jx.rc(jx.c30, 'show', args, { bags: ["dbadmin.app","dbadmin"] }),
+              },
+              Processes: {
+                show: (...args) => jx.rc(jx.c31, 'show', args, { bags: ["dbadmin.app","dbadmin"] }),
+              },
+              QueryEditor: {
+                server: (...args) => jx.rc(jx.c32, 'server', args, { bags: ["dbadmin.app","dbadmin","dbadmin.tab"] }),
+                exec: (...args) => jx.rc(jx.c32, 'exec', args, { bags: ["dbadmin.app","dbadmin","dbadmin.tab"] }),
+              },
+              Status: {
+                show: (...args) => jx.rc(jx.c33, 'show', args, { bags: ["dbadmin.app","dbadmin"] }),
+              },
+              Variables: {
+                show: (...args) => jx.rc(jx.c34, 'show', args, { bags: ["dbadmin.app","dbadmin"] }),
+              },
+            },
+            Table: {
+              Ddl: {
+                Alter: {
+                  render: (...args) => jx.rc(jx.c35, 'render', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table"] }),
+                },
+                Column: {
+                  CreateFunc: {
+                    add: (...args) => jx.rc(jx.c36, 'add', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table"] }),
+                    save: (...args) => jx.rc(jx.c36, 'save', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table"], callback: [jaxon.dbadmin.bagTableForm] }),
+                  },
+                  DeleteFunc: {
+                    exec: (...args) => jx.rc(jx.c37, 'exec', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table"], callback: [jaxon.dbadmin.bagTableForm] }),
+                    cancel: (...args) => jx.rc(jx.c37, 'cancel', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table"], callback: [jaxon.dbadmin.bagTableForm] }),
+                  },
+                  MoveFunc: {
+                    up: (...args) => jx.rc(jx.c38, 'up', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table"] }),
+                    down: (...args) => jx.rc(jx.c38, 'down', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table"] }),
+                  },
+                  UpdateFunc: {
+                    edit: (...args) => jx.rc(jx.c39, 'edit', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table"] }),
+                    save: (...args) => jx.rc(jx.c39, 'save', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table"], callback: [jaxon.dbadmin.bagTableForm] }),
+                    cancel: (...args) => jx.rc(jx.c39, 'cancel', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table"], callback: [jaxon.dbadmin.bagTableForm] }),
+                  },
+                },
+                Create: {
+                  render: (...args) => jx.rc(jx.c40, 'render', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table"] }),
+                },
+                SqlCodeFunc: {
+                  showCreateChanges: (...args) => jx.rc(jx.c41, 'showCreateChanges', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table"] }),
+                  showAlterChanges: (...args) => jx.rc(jx.c41, 'showAlterChanges', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table"] }),
+                  showCreateQueries: (...args) => jx.rc(jx.c41, 'showCreateQueries', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table"] }),
+                  showAlterQueries: (...args) => jx.rc(jx.c41, 'showAlterQueries', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table"] }),
+                },
+                Table: {
+                  show: (...args) => jx.rc(jx.c42, 'show', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table"] }),
+                },
+                TableFunc: {
+                  create: (...args) => jx.rc(jx.c43, 'create', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table"] }),
+                  alter: (...args) => jx.rc(jx.c43, 'alter', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table"] }),
+                  drop: (...args) => jx.rc(jx.c43, 'drop', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table"] }),
+                },
+              },
+              Dml: {
+                DeleteFunc: {
+                  exec: (...args) => jx.rc(jx.c44, 'exec', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder"] }),
+                },
+                InsertFunc: {
+                  show: (...args) => jx.rc(jx.c45, 'show', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder"] }),
+                  save: (...args) => jx.rc(jx.c45, 'save', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder"] }),
+                  showQueryForm: (...args) => jx.rc(jx.c45, 'showQueryForm', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder"] }),
+                },
+                SearchFunc: {
+                  search: (...args) => jx.rc(jx.c46, 'search', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder"], mode: 'synchronous' }),
+                },
+                SqlCodeFunc: {
+                  showInsertRowQuery: (...args) => jx.rc(jx.c47, 'showInsertRowQuery', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table"] }),
+                  showUpdateRowQuery: (...args) => jx.rc(jx.c47, 'showUpdateRowQuery', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table"] }),
+                  showDeleteRowQuery: (...args) => jx.rc(jx.c47, 'showDeleteRowQuery', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table"] }),
+                  showDropTableQuery: (...args) => jx.rc(jx.c47, 'showDropTableQuery', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table"] }),
+                  showDropViewQuery: (...args) => jx.rc(jx.c47, 'showDropViewQuery', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table"] }),
+                },
+                UpdateFunc: {
+                  edit: (...args) => jx.rc(jx.c48, 'edit', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder"] }),
+                  save: (...args) => jx.rc(jx.c48, 'save', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder"] }),
+                  showQueryForm: (...args) => jx.rc(jx.c48, 'showQueryForm', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder"] }),
+                },
+              },
+              Dql: {
+                ResultSet: {
+                  page: (...args) => jx.rc(jx.c49, 'page', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder"] }),
+                },
+                Select: {
+                  show: (...args) => jx.rc(jx.c50, 'show', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder"] }),
+                  foreign: (...args) => jx.rc(jx.c50, 'foreign', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder"] }),
+                  back: (...args) => jx.rc(jx.c50, 'back', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder"] }),
+                  edit: (...args) => jx.rc(jx.c50, 'edit', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder","dbadmin.tab"] }),
+                },
+              },
+            },
+            View: {
+              Ddl: {
+                Form: {
+                  add: (...args) => jx.rc(jx.c51, 'add', args, { bags: ["dbadmin.app","dbadmin"] }),
+                  edit: (...args) => jx.rc(jx.c51, 'edit', args, { bags: ["dbadmin.app","dbadmin"] }),
+                },
+                View: {
+                  show: (...args) => jx.rc(jx.c52, 'show', args, { bags: ["dbadmin.app","dbadmin"] }),
+                },
+                ViewFunc: {
+                  create: (...args) => jx.rc(jx.c53, 'create', args, { bags: ["dbadmin.app","dbadmin"] }),
+                  update: (...args) => jx.rc(jx.c53, 'update', args, { bags: ["dbadmin.app","dbadmin"] }),
+                  drop: (...args) => jx.rc(jx.c53, 'drop', args, { bags: ["dbadmin.app","dbadmin"] }),
+                },
+              },
+              Dql: {
+                Select: {
+                  show: (...args) => jx.rc(jx.c54, 'show', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder"] }),
+                  edit: (...args) => jx.rc(jx.c54, 'edit', args, { bags: ["dbadmin.app","dbadmin","dbadmin.table","dbadmin.builder","dbadmin.tab"] }),
+                },
+              },
+            },
+          },
+          DbFunc: {
+            server: (...args) => jx.rc(jx.c55, 'server', args, { bags: ["dbadmin.app","dbadmin","dbadmin.tab"] }),
+            database: (...args) => jx.rc(jx.c55, 'database', args, { bags: ["dbadmin.app","dbadmin","dbadmin.tab"] }),
+          },
+        },
+      },
+    },
+  },
+};
+
+/**
+ * Bootbox dialogs plugin
+ * Class: jaxon.dialog.libs.bootbox
+ */
+
+jaxon.dom.ready(() => jaxon.dialog.register('bootbox', (self, options, utils) => {
+    // Dialogs options
+    const {
+        labels,
+        modal: modalOptions = {},
+        alert: alertOptions = {},
+        confirm: confirmOptions = {},
+    } = options;
+
+    /**
+     * @var {object}
+     */
+    const dialog = {
+        dom: null,
+    };
+
+    /**
+     * Show the modal dialog
+     *
+     * @param {object} dialog The dialog parameters
+     * @param {string} dialog.title The dialog title
+     * @param {string} dialog.content The dialog HTML content
+     * @param {array} dialog.buttons The dialog buttons
+     * @param {array} dialog.options The dialog options
+     * @param {function} cbDomElement A callback to call with the DOM element of the dialog content
+     *
+     * @returns {object}
+     */
+    self.show = ({ title, content, buttons, options }, cbDomElement) => {
+        let btnIndex = 1;
+        const oButtons = {};
+        buttons.forEach(({ title: label, class: className, click }) => {
+            if (!utils.isObject(click)) {
+                oButtons.cancel = {label, className: 'btn-danger' };
+                return;
+            }
+            oButtons[`btn${btnIndex++}`] = {
+                label,
+                className,
+                callback: () => {
+                    utils.js(click);
+                    return false; // Do not close the dialog.
+                },
+            };
+        });
+        dialog.dom = bootbox.dialog({
+            ...modalOptions,
+            ...options,
+            title,
+            message: content !== '' ? content : '&nbsp;',
+            buttons: oButtons,
+        });
+        // Pass the js content element to the callback.
+        cbDomElement(dialog.dom.get(0));
+    };
+
+    /**
+     * Hide the modal dialog
+     *
+     * @returns {void}
+     */
+    self.hide = () => {
+        if ((dialog.dom)) {
+            dialog.dom.modal('hide');
+            dialog.dom = null;
+        }
+    };
+
+    const xTypes = {
+        success: 'success',
+        info: 'info',
+        warning: 'warning',
+        error: 'danger',
+    };
+
+    /**
+     * Show an alert message
+     *
+     * @param {object} alert The alert parameters
+     * @param {string} alert.type The alert type
+     * @param {string} alert.message The alert message
+     * @param {string} alert.title The alert title
+     *
+     * @returns {void}
+     */
+    self.alert = ({ type, message, title }) => {
+        message = '<div class="alert alert-' + (xTypes[type] ?? xTypes.info) +
+            '" style="margin-top:15px;margin-bottom:-15px;">' +
+            (!message ? '' : '<strong>' + title + '</strong><br/>') + message + '</div>';
+        bootbox.alert({ ...alertOptions, message });
+    };
+
+    /**
+     * Ask a confirm question to the user.
+     *
+     * @param {object} confirm The confirm parameters
+     * @param {string} confirm.question The question to ask
+     * @param {string} confirm.title The question title
+     * @param {object} callback The confirm callbacks
+     * @param {callback} callback.yes The function to call if the answer is yes
+     * @param {callback=} callback.no The function to call if the answer is no
+     *
+     * @returns {void}
+     */
+    self.confirm = ({ question, title }, { yes: yesCb, no: noCb = () => {} }) => bootbox.confirm({
+        ...confirmOptions,
+        title: title,
+        message: question,
+        buttons: {
+            cancel: {label: labels.no},
+            confirm: {label: labels.yes}
+        },
+        callback: (res) => {
+            res ? yesCb() : noCb();
+        },
+    });
+}));
+
+/**
+ * Class: jaxon.dialog.libs.sweetalert
+ */
+
+jaxon.dom.ready(() => jaxon.dialog.register('sweetalert', (self, options) => {
+    // Dialogs options
+    const {
+        labels,
+        alert: alertOptions = {},
+        confirm: confirmOptions = {},
+    } = options;
+
+    const xTypes = {
+        success: 'success',
+        info: 'info',
+        warning: 'warning',
+        error: 'error',
+    };
+
+    /**
+     * Show an alert message
+     *
+     * @param {object} alert The alert parameters
+     * @param {string} alert.type The alert type
+     * @param {string} alert.message The alert message
+     * @param {string} alert.title The alert title
+     *
+     * @returns {void}
+     */
+    self.alert = ({ type, message, title }) => Swal.fire({
+        ...alertOptions,
+        text: message,
+        title: title ?? '',
+        icon: xTypes[type] ?? xTypes.info,
+    });
+
+    /**
+     * Ask a confirm question to the user.
+     *
+     * @param {object} confirm The confirm parameters
+     * @param {string} confirm.question The question to ask
+     * @param {string} confirm.title The question title
+     * @param {object} callback The confirm callbacks
+     * @param {callback} callback.yes The function to call if the answer is yes
+     * @param {callback=} callback.no The function to call if the answer is no
+     *
+     * @returns {void}
+     */
+    self.confirm = ({ question, title }, { yes: yesCb, no: noCb = () => {} }) => Swal.fire({
+        ...confirmOptions,
+        icon: "question",
+        title,
+        text: question,
+        showCancelButton: true,
+        confirmButtonText: labels.yes,
+        cancelButtonText: labels.no,
+        reverseButtons: true,
+    }).then((result) => {
+        result.isConfirmed ? yesCb() : noCb();
+    });
+}));
+
+/**
+ * Class: jaxon.dialog.libs.butterup
+ */
+
+jaxon.dom.ready(() => jaxon.dialog.register('butterup', (self, options, utils) => {
+    // Dialogs options
+    const {
+        labels,
+        alert: alertOptions = {},
+        confirm: confirmOptions = {},
+    } = options;
+
+    const xTypes = {
+        success: 'success',
+        info: 'info',
+        warning: 'warning',
+        error: 'error',
+    };
+
+    /**
+     * Show an alert message
+     *
+     * @param {object} alert The alert parameters
+     * @param {string} alert.type The alert type
+     * @param {string} alert.title The alert title
+     * @param {string} alert.message The alert message
+     *
+     * @returns {void}
+     */
+    self.alert = ({ type, title, message }) => {
+        butterup.toast({
+            type: xTypes[type] ?? xTypes.info,
+            title,
+            message,
+            location: 'top-center',
+            icon: true,
+            dismissable: true,
+            ...alertOptions,
+            onRender: (toast) => {
+                // Give a custom id to the toast.
+                toast.id = 'butterupToast-' + utils.createUniqueId(10);
+            },
+        });
+    };
+
+    /**
+     * Ask a confirm question to the user.
+     *
+     * @param {object} confirm The confirm parameters
+     * @param {string} confirm.question The question to ask
+     * @param {string} confirm.title The question title
+     * @param {object} callback The confirm callbacks
+     * @param {callback} callback.yes The function to call if the answer is yes
+     * @param {callback=} callback.no The function to call if the answer is no
+     *
+     * @returns {void}
+     */
+    self.confirm = ({ question, title }, { yes: yesCb, no: noCb = () => {} }) => {
+        const toastOptions = {
+            id: '', // The id of the confirm toast.
+            life: butterup.options.toastLife, // Save the toastLife value.
+        };
+        // Set the toast life to a higher value, so the confirm dialog is not dismissed too early.
+        // Todo: disable the dismissable timeout.
+        butterup.options.toastLife = 60000;
+
+        butterup.toast({
+            title,
+            message: question,
+            location: 'top-center',
+            icon: false,
+            dismissable: false,
+            ...confirmOptions,
+            onRender: (toast) => {
+                // Give a custom id to the toast.
+                toast.id = 'butterupToast-' + utils.createUniqueId(10);
+                // Save the id of the confirm toast.
+                toastOptions.id = toast.id;
+            },
+            primaryButton: {
+                text: labels.yes,
+                onClick: () => {
+                    // Close the confirm toast.
+                    butterup.despawnToast(toastOptions.id);
+                    yesCb();
+                },
+            },
+            secondaryButton: {
+                text: labels.no,
+                onClick: () => {
+                    // Close the confirm toast.
+                    butterup.despawnToast(toastOptions.id);
+                    noCb();
+                },
+            },
+        });
+
+        // Restore the initial toastLife value.
+        butterup.options.toastLife = toastOptions.life;
+    };
+}));
