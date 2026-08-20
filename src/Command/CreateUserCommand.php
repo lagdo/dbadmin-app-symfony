@@ -20,7 +20,7 @@ use function sprintf;
 #[AsCommand(
     name: 'user:create',
     description: 'Create a user account',
-    help: 'user:create
+    help: 'bin/console user:create
         {--name= : The new user name}
         {--email= : The new user email}',
 )]
@@ -41,9 +41,9 @@ final class CreateUserCommand extends Command
     protected function configure(): void
     {
         $this
-            ->addOption('name', null, InputOption::VALUE_REQUIRED,
+            ->addOption('name', 'a', InputOption::VALUE_REQUIRED,
                 'The new user full name')
-            ->addOption('email', null, InputOption::VALUE_REQUIRED,
+            ->addOption('email', 'm', InputOption::VALUE_REQUIRED,
                 'The new user email');
     }
 

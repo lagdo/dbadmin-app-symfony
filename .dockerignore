@@ -30,6 +30,7 @@ var/sessions/*
 **/*.md
 .DS_Store
 
+config/secrets/*
 public/bundles/*
 var/dbadmin/*
 docker/dbadmin/*

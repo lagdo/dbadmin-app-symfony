@@ -17,4 +17,5 @@
 /.env.test
 /.env.dbadmin
 
+/config/secrets/
 /docker/dbadmin-dev/

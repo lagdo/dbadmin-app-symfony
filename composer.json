@@ -107,10 +107,9 @@
         "post-update-cmd": [
             "@auto-scripts"
         ],
-        "post-create-project-cmd": [
-            "@php bin/console secrets:generate-keys --ansi",
-            "@php -r \"file_exists('var/dbadmin.sqlite') || touch('var/dbadmin.sqlite');\"",
-            "@php bin/console doctrine:migrations:migrate --ansi"
+        "dbadmin-create-localdb": [
+            "@php bin/console user:localdb",
+            "@php bin/console doctrine:migrations:migrate --no-interaction"
         ]
     },
     "conflict": {
