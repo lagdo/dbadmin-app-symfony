@@ -1,5 +1,4 @@
 {
-    "type": "project",
     "name": "lagdo/dbadmin-app-symfony",
     "description": "A web based database management tool with multiple DBMS support.",
     "keywords": ["Database", "PostgreSQL", "MySQL", "MariaDB", "SQLite", "Symfony", "PHP"],
@@ -17,6 +16,10 @@
         "doctrine/doctrine-bundle": "^3.3",
         "doctrine/doctrine-migrations-bundle": "^4.0",
         "doctrine/orm": "^3.6",
+        "aws/aws-sdk-php": "^3.379",
+        "csharpru/vault-php": "^4.4",
+        "infisical/php-sdk": "^0.0.2",
+        "google/cloud-secret-manager": "^2.3",
         "jaxon-php/jaxon-symfony": "^5.1",
         "jaxon-php/jaxon-upload": "^2.1",
         "lagdo/ui-builder-bootstrap5": "0.11.*",
