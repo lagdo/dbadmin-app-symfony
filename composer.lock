@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "94d86ea4ddd01983f923f917726b095f",
+    "content-hash": "520047cff083f5070cdb20770feca049",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -3087,16 +3087,16 @@
         },
         {
             "name": "lagdo/jaxon-dbadmin",
-            "version": "v0.34.4",
+            "version": "v0.34.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lagdo/jaxon-dbadmin.git",
-                "reference": "e66702c288b6e227d8a5b79df2154f3d6901952c"
+                "reference": "aa64d6c5a83a56ea48e074c7aa56181e5bd68656"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lagdo/jaxon-dbadmin/zipball/e66702c288b6e227d8a5b79df2154f3d6901952c",
-                "reference": "e66702c288b6e227d8a5b79df2154f3d6901952c",
+                "url": "https://api.github.com/repos/lagdo/jaxon-dbadmin/zipball/aa64d6c5a83a56ea48e074c7aa56181e5bd68656",
+                "reference": "aa64d6c5a83a56ea48e074c7aa56181e5bd68656",
                 "shasum": ""
             },
             "require": {
@@ -3158,20 +3158,20 @@
                 "issues": "https://github.com/lagdo/jaxon-dbadmin/issues",
                 "source": "https://github.com/lagdo/jaxon-dbadmin"
             },
-            "time": "2026-08-22T21:59:32+00:00"
+            "time": "2026-08-29T14:09:45+00:00"
         },
         {
             "name": "lagdo/jaxon-ui-builder",
-            "version": "v0.12.1",
+            "version": "v0.12.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lagdo/jaxon-ui-builder.git",
-                "reference": "e76f7742f44053879dd1186b46c23e170bd38138"
+                "reference": "18756a78588e7f69f87e8f62b37bbb7fa7fe0458"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lagdo/jaxon-ui-builder/zipball/e76f7742f44053879dd1186b46c23e170bd38138",
-                "reference": "e76f7742f44053879dd1186b46c23e170bd38138",
+                "url": "https://api.github.com/repos/lagdo/jaxon-ui-builder/zipball/18756a78588e7f69f87e8f62b37bbb7fa7fe0458",
+                "reference": "18756a78588e7f69f87e8f62b37bbb7fa7fe0458",
                 "shasum": ""
             },
             "require": {
@@ -3210,7 +3210,7 @@
                 "issues": "https://github.com/lagdo/jaxon-ui-builder/issues",
                 "source": "https://github.com/lagdo/jaxon-ui-builder"
             },
-            "time": "2026-08-11T01:59:56+00:00"
+            "time": "2026-08-29T21:37:06+00:00"
         },
         {
             "name": "lagdo/symfony-facades",

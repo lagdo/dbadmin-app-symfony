@@ -11,8 +11,7 @@ Jaxon DbAdmin is a complete rewrite of [Adminer](https://github.com/vrana/admine
 Jaxon DbAdmin is a [Jaxon package](https://www.jaxon-php.org/docs/v5x/extensions/packages.html), that is inserted into a page of an existing PHP application.
 So it's also a single page application, and all its operations are performed with Ajax requests.
 
-Separate packages provide ready-to-use applications which run Jaxon DbAdmin respectively with the [Laravel](https://github.com/lagdo/dbadmin-app-laravel), [Symfony](https://github.com/lagdo/dbadmin-app-symfony) and [Slim](https://github.com/lagdo/dbadmin-app-slim) frameworks.
-This blog post on the Jaxon website explains how to install Jaxon DbAdmin on [Backpack](https://backpackforlaravel.com), a Laravel-based admin panel: [https://www.jaxon-php.org/blog/2025/07/install-jaxon-dbadmin-on-backpack.html](https://www.jaxon-php.org/blog/2025/07/install-jaxon-dbadmin-on-backpack.html).
+This package is a ready-to-use application running Jaxon DbAdmin with the Symfony framework.
 
 The database access code (and thus the provided features) originates from [Adminer](https://github.com/vrana/adminer).
 The original code was refactored to take advantage of the latest PHP features (namespaces, interfaces, DI, and so on), and separated into multiple Composer packages.
@@ -24,8 +23,6 @@ The original code was refactored to take advantage of the latest PHP features (n
 The [https://github.com/lagdo/jaxon-dbadmin](https://github.com/lagdo/jaxon-dbadmin) package implements the database management features in a [Jaxon package](https://www.jaxon-php.org/docs/v5x/extensions/packages.html).
 Its UI is built with the [https://github.com/lagdo/ui-builder](https://github.com/lagdo/ui-builder) package, which will provide support for multiple frontend frameworks.
 [Bootstrap 5](https://github.com/lagdo/ui-builder-bootstrap5) is the default.
-
-This repo is the monorepo where the database packages are developed.
 
 ## Features and current status
 
@@ -55,12 +52,15 @@ Jaxon DbAdmin currently implements the following features:
 - Code completion for table and field names in the SQL editor.
 - Navigate through related tables.
 - Save the executed queries in an audit logs database.
-- Show the audit logs in a dedicated page, with limited access.
+- Show the audit logs in a dedicated page, with restricted access.
 
 The following features are planned for future releases:
 
 - An advanced GUI-based query builder.
 - Automated tests.
+- Support more secret managers.
+  - [Azure Key Vault](https://azure.microsoft.com/fr-fr/products/key-vault)
+  - [Alibaba Key Management Service](https://www.alibabacloud.com/help/en/kms)
 - Advanced SQL edition and code completion with the Ace linters
   - https://github.com/mkslanc/ace-linters
   - https://www.npmjs.com/package/ace-sql-linter

@@ -5,10 +5,6 @@ parameters:
                 cache:
                     enabled: true
                     dir: '%kernel.project_dir%/var/dbadmin'
-            template:
-                name: bootstrap5
-                assets:
-                    url: "/dbadmin"
             assets:
                 export: true
                 minify: true
@@ -23,6 +19,19 @@ parameters:
                 lib:
                     use:
                         - butterup
+            storage:
+                stores:
+                    uploads:
+                        adapter: local
+                        dir: '%kernel.project_dir%/var/uploads'
+                    exports:
+                        adapter: local
+                        dir: '%kernel.project_dir%/var/exports'
+            uploads:
+                enabled: true
+                files:
+                    sql_files:
+                        storage: uploads
 
         lib:
             core:
