@@ -102,6 +102,7 @@
     },
     "scripts": {
         "auto-scripts": {
+            "-r \"@file_exists('.env') || @copy('.env.docker', '.env');\"": "php-script",
             "cache:clear": "symfony-cmd"
         },
         "post-install-cmd": [
