@@ -53,6 +53,7 @@ class DbAdminListener
         switch($route) {
             case 'dbadmin_page':
             case 'dbadmin_ajax':
+            case 'dbadmin_file':
                 // Register the DbAdmin package.
                 $configDir = "{$this->projectDir}/config/dbadmin";
                 DbAdminPackage::register($configDir, '/jaxon');
