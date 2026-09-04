@@ -24,6 +24,9 @@ services:
     Lagdo\DbAdmin\Driver\Utils\TranslatorInterface:
         public: true
         factory: ['DbAdmin\Symfony\Factory\DbAdminFactory', 'trans']
+    Lagdo\DbAdmin\Support\Service\Export\FileSystemInterface:
+        public: true
+        factory: ['DbAdmin\Symfony\Factory\DbAdminFactory', 'filesystem']
     jaxon.service_locator:
         public: true
         class: Symfony\Component\DependencyInjection\ServiceLocator

@@ -4,6 +4,7 @@ namespace DbAdmin\Symfony\Factory;
 
 use Lagdo\DbAdmin\Driver\Utils\TranslatorInterface;
 use Lagdo\DbAdmin\Support\Provider\AuthInterface;
+use Lagdo\DbAdmin\Support\Service\Export\FileSystemInterface;
 
 use function Jaxon\jaxon;
 
@@ -26,5 +27,13 @@ class DbAdminFactory
     public static function trans(): TranslatorInterface
     {
         return jaxon()->di()->g(TranslatorInterface::class);
+    }
+
+    /**
+     * @return FileSystemInterface
+     */
+    public static function filesystem(): FileSystemInterface
+    {
+        return jaxon()->di()->g(FileSystemInterface::class);
     }
 }
