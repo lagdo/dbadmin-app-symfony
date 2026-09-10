@@ -1,0 +1,4 @@
+#/bin/sh
+
+COMMAND_DIR=$(dirname "$0")
+php ${COMMAND_DIR}/console user:create "$@"
