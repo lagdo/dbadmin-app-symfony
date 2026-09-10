@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d7a9ec4a0c6a48620c19ec27ef588167",
+    "content-hash": "d4efeb5c59e2d2f729b805de6ef50f15",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -3087,16 +3087,16 @@
         },
         {
             "name": "lagdo/jaxon-dbadmin",
-            "version": "v0.34.5",
+            "version": "v0.34.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lagdo/jaxon-dbadmin.git",
-                "reference": "aa64d6c5a83a56ea48e074c7aa56181e5bd68656"
+                "reference": "fb5171253c6ff4b9a047b171a0df95435cab42a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lagdo/jaxon-dbadmin/zipball/aa64d6c5a83a56ea48e074c7aa56181e5bd68656",
-                "reference": "aa64d6c5a83a56ea48e074c7aa56181e5bd68656",
+                "url": "https://api.github.com/repos/lagdo/jaxon-dbadmin/zipball/fb5171253c6ff4b9a047b171a0df95435cab42a0",
+                "reference": "fb5171253c6ff4b9a047b171a0df95435cab42a0",
                 "shasum": ""
             },
             "require": {
@@ -3158,7 +3158,7 @@
                 "issues": "https://github.com/lagdo/jaxon-dbadmin/issues",
                 "source": "https://github.com/lagdo/jaxon-dbadmin"
             },
-            "time": "2026-08-29T14:09:45+00:00"
+            "time": "2026-09-08T21:53:49+00:00"
         },
         {
             "name": "lagdo/jaxon-ui-builder",
