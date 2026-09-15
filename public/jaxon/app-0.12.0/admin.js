@@ -85,6 +85,7 @@ Lagdo = {
             editTabTitle: (...args) => jx.rc(jx.c0, 'editTabTitle', args, { bags: ["dbadmin.app","dbadmin","dbadmin.tab"] }),
             saveTabTitle: (...args) => jx.rc(jx.c0, 'saveTabTitle', args, { bags: ["dbadmin.app","dbadmin","dbadmin.tab"] }),
             saveAppTabs: (...args) => jx.rc(jx.c0, 'saveAppTabs', args, { bags: ["dbadmin.app","dbadmin","dbadmin.tab"] }),
+            toggleSidebar: (...args) => jx.rc(jx.c0, 'toggleSidebar', args, { bags: ["dbadmin.app","dbadmin","dbadmin.tab"] }),
           },
           Db: {
             Command: {

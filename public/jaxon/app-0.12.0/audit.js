@@ -24,6 +24,7 @@ Lagdo = {
         Audit: {
           AppFunc: {
             start: (...args) => jx.rc(jx.c0, 'start', args, { bags: ["dbadmin.app","dbadmin","dbadmin.audit"] }),
+            toggleSidebar: (...args) => jx.rc(jx.c0, 'toggleSidebar', args, { bags: ["dbadmin.app","dbadmin","dbadmin.audit"] }),
           },
           Commands: {
             page: (...args) => jx.rc(jx.c1, 'page', args, { bags: ["dbadmin.audit"] }),

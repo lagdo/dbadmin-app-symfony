@@ -8,8 +8,8 @@ parameters:
             assets:
                 export: true
                 minify: true
-                uri: /jaxon/app-0.11.0
-                dir: '%kernel.project_dir%/public/jaxon/app-0.11.0'
+                uri: /jaxon/app-0.12.0
+                dir: '%kernel.project_dir%/public/jaxon/app-0.12.0'
                 # file' => '',
             dialogs:
                 default:
