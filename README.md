@@ -1,8 +1,7 @@
-# A web-based database management tool
+A modern web-based database manager
+===================================
 
-**Jaxon DbAdmin is a database admin dashboard with multiple DBMS support, and a custom and extensible authentication system.**
-
----
+![screenshot](screenshots/jaxon-dbadmin-select-window.png)
 
 ## About Jaxon DbAdmin
 
