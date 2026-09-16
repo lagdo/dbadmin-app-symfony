@@ -6,12 +6,14 @@
 
 ## About Jaxon DbAdmin
 
-Jaxon DbAdmin is a complete rewrite of [Adminer](https://github.com/vrana/adminer), the popular database admin dashboard.
+Jaxon DbAdmin is a modern database manager built on a fully refactored codebase inpired by [Adminer](https://github.com/vrana/adminer) and powered by [Jaxon](https://www.jaxon-php.org).
+It brings Adminer into the team era with multi-tab database browsing, query history and bookmarks, all wrapped in a clean, modern interface.
 
-Jaxon DbAdmin is a [Jaxon package](https://www.jaxon-php.org/docs/v5x/extensions/packages.html), that is inserted into a page of an existing PHP application.
-So it's also a single page application, and all its operations are performed with Ajax requests.
+Jaxon DbAdmin is designed with security and accountability in mind.
+Users authenticate with their own credentials, database secrets stay strictly server-side and are never shared, and every operation can be recorded in an audit log.
 
-This package is a ready-to-use application running Jaxon DbAdmin with the Symfony framework.
+Jaxon DbAdmin is a [Jaxon package](https://www.jaxon-php.org/docs/v5x/extensions/packages.html).
+This package is a ready-to-use application running with the Symfony framework.
 
 The database access code (and thus the provided features) originates from [Adminer](https://github.com/vrana/adminer).
 The original code was refactored to take advantage of the latest PHP features (namespaces, interfaces, DI, and so on), and separated into multiple Composer packages.
@@ -59,14 +61,13 @@ Jaxon DbAdmin currently implements the following features:
 The following features are planned for future releases:
 
 - An advanced GUI-based query builder.
-- Automated tests.
-- Advanced SQL edition and code completion with the Ace linters
-  - https://github.com/mkslanc/ace-linters
-  - https://www.npmjs.com/package/ace-sql-linter
-- Provide a WebAwesome based UI template.
-- Provide TailwindCSS based UI templates.
+- An AI assistant for building and running queries.
+- An advanced SQL parser:
+  - https://github.com/tobymao/sqlglot
+- Alternative UI templates, with WebAwesome, TailwindCSS and Bulma.
 - Use an advanced UI component for HTML tables.
 - Save and display more data in the audit logs.
+- Automated tests.
 
 Documentation and howtos
 ------------------------
