@@ -1,6 +1,11 @@
 #bootbox-container .modal-header {
     display: block !important;
 }
+
+div.pure-g {
+    margin: 3px 0;
+}
+
 #jaxon-dbadmin .btn-select {
     margin-top: 0;
     margin-bottom: 0;
