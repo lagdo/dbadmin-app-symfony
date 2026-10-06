@@ -67,6 +67,7 @@ The following features are planned for future releases:
 - Use an advanced UI component for HTML tables.
 - Save and display more data in the audit logs.
 - Automated tests.
+- Translations.
 
 Documentation and howtos
 ------------------------
