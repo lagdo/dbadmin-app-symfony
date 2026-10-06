@@ -18,7 +18,7 @@ class DbAdminController extends AbstractController
     #[Route('/', name: 'dbadmin_page', methods: ['GET'])]
     public function home(Jaxon $jaxon): Response
     {
-        return $this->render('dbadmin.html.twig', [
+        return $this->render('@dbadmin/dbadmin.html.twig', [
             'jaxon' => $jaxon,
             'package' => DbAdminPackage::class,
         ]);
@@ -35,7 +35,7 @@ class DbAdminController extends AbstractController
     #[IsGranted(DbAuditVoter::VIEW)]
     public function audit(Jaxon $jaxon): Response
     {
-        return $this->render('dbaudit.html.twig', [
+        return $this->render('@dbadmin/dbaudit.html.twig', [
             'jaxon' => $jaxon,
             'package' => DbAuditPackage::class,
         ]);

@@ -17,14 +17,17 @@ use Symfony\Component\HttpKernel\Event\ControllerEvent;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
+use Twig\Loader\FilesystemLoader;
 
 class DbAdminListener
 {
     /**
      * @param Jaxon $jaxon
+     * @param FilesystemLoader $fsLoader
      * @param string $projectDir
      */
-    public function __construct(private Jaxon $jaxon, private string $projectDir)
+    public function __construct(private Jaxon $jaxon,
+        private FilesystemLoader $fsLoader, private string $projectDir)
     {}
 
     /**
@@ -41,6 +44,16 @@ class DbAdminListener
     }
 
     /**
+     * @return void
+     */
+    private function setTemplateNamespace(): void
+    {
+        // Register the view namespace
+        $template = $this->jaxon->getAppOption('template', '');
+        $this->fsLoader->addPath("{$this->projectDir}/templates/$template", 'dbadmin');
+    }
+
+    /**
      * @param ControllerEvent $event
      *
      * @return void
@@ -54,15 +67,18 @@ class DbAdminListener
             case 'dbadmin_page':
             case 'dbadmin_ajax':
             case 'dbadmin_file':
+            case 'app_login':
                 // Register the DbAdmin package.
                 $configDir = "{$this->projectDir}/config/dbadmin";
                 DbAdminPackage::register($configDir, '/jaxon');
+                $this->setTemplateNamespace();
                 break;
             case 'dbaudit_page':
             case 'dbaudit_ajax':
                 // Register the DbAudit package.
                 $configDir = "{$this->projectDir}/config/dbadmin";
                 DbAuditPackage::register($configDir, '/audit/jaxon');
+                $this->setTemplateNamespace();
                 break;
             default: // Nothing to do.
         }

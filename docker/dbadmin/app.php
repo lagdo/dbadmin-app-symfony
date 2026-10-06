@@ -6,11 +6,22 @@ use DbAdmin\Symfony\Facade\UrlGenerator;
 use Lagdo\DbAdmin\Support\Facade\Auth;
 use Lagdo\DbAdmin\Support\Provider;
 use Lagdo\DbAdmin\Support\Service;
+use Lagdo\UiBuilder\Bootstrap5;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 
 return [
     'ui' => [
-        'template' => 'bootstrap5',
+        'template' => [
+            // SB Admin template: https://startbootstrap.com/template/sb-admin
+            // 'name' => 'sb-admin',
+            // 'builder' => Bootstrap5\Builder::class,
+            // CoreUI 5 template: https://coreui.io/product/free-bootstrap-admin-template/
+            'name' => 'coreui5',
+            'builder' => Bootstrap5\CoreUi\Builder::class,
+            // Plain Admin template: https://plainadmin.com/
+            // 'name' => 'plain-admin',
+            // 'builder' => Bootstrap5\Builder::class,
+        ],
         'assets' => [
             'url' => '/dbadmin',
         ],

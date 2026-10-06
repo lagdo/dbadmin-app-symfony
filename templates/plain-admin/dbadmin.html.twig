@@ -1,4 +1,4 @@
-{% extends "layout.html.twig" %}
+{% extends "plain-admin/layout.html.twig" %}
 
 {% block css %}
 {{ jxnCss()|raw }}
@@ -9,7 +9,7 @@
 
 {{ jxnScript()|raw }}
 <script type='text/javascript'>
-  {{ jxnPackage(package, 'ready')|raw }};
+    {{ jxnPackage(package, 'ready')|raw }};
 </script>
 {% endblock %}
 
