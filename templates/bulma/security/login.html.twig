@@ -1,0 +1,35 @@
+{% extends 'bulma/security/layout.html.twig' %}
+
+{% block pageTitle %}
+{{ 'Login'|trans }}
+{% endblock %}
+
+{% block pageContent %}
+            <form method="POST" action="/login" class="needs-validation" novalidate="">
+                <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
+                <label class="label">{{ 'Email'|trans }}</label>
+                <p class="control has-icon has-icons-left">
+                  <input class="input" type="email" id="username" name="_username" value="{{ last_username }}" placeholder="name@example.com" required autofocus />
+                  <span class="icon is-small is-left"><i class="fa fa-envelope"></i></span>
+{% if error %}
+                  <span class="help is-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</span>
+{% endif %}
+                </p>
+                <label class="label mt-3">{{ 'Password'|trans }}</label>
+                <p class="control has-icon has-icons-left">
+                  <input class="input" type="password" id="password" name="_password" placeholder="Password" />
+                  <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
+                </p>
+                <p class="control mt-5">
+                  <label for="inputRememberPassword" class="b-checkbox checkbox">
+                    <input id="inputRememberPassword" type="checkbox" name="remember" checked />
+                    <span class="check"></span>
+                    <span class="control-label">{{ 'Remember Me'|trans }}</span>
+                  </label>
+                </p>
+                <hr>
+                <p class="control">
+                  <button type="submit" class="button is-primary">{{ 'Login'|trans }}</button>
+                </p>
+            </form>
+{% endblock %}

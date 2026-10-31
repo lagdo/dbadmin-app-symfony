@@ -1,0 +1,19 @@
+{% extends "bulma/security/layout.html.twig" %}
+
+{% block pageTitle %}
+Forbidden
+{% endblock %}
+
+{% block headTitle %}
+403
+{% endblock %}
+
+{% block pageContent %}
+                    <div class="column is-two-thirds has-text-left">
+                        <h1 class="title is-2">Forbidden</h1>
+                        <p class="is-size-4">Access to this resource is denied.</p>
+                        <a href="/">
+                            <i class="fas fa-arrow-left me-1"></i> Return to Dashboard
+                        </a>
+                    </div>
+{% endblock %}

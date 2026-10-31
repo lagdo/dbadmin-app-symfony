@@ -9,10 +9,14 @@
     <meta name="author" content="Thierry Feuzeu">
     <title>Jaxon DbAdmin &mdash; {% block pageTitle %}{% endblock %}</title>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" />
     <link href="/sb-admin/css/styles.css" rel="stylesheet" />
     <style>
       html {
         font-size: 14px;
+      }
+      #bootstrap5Modal .modal-dialog {
+        max-width: 800px;
       }
     </style>
 
@@ -30,7 +34,27 @@
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 
     {% block js %}{% endblock %}
+
+    <script src="/jaxon/dialogs.js"></script>
+    <script type="javascript">
+        jaxon.dom.ready(() => jaxon.dialog.config({
+            "labels":{
+                "confirm":{
+                    "yes":"Yes",
+                    "no":"No"
+                }
+            },
+            "defaults":{
+                "modal":"bootstrap5",
+                "toast":"notyf",
+                "alert":"sweetalert",
+                "confirm":"sweetalert"
+            }
+        }));
+    </script>
   </body>
 </html>

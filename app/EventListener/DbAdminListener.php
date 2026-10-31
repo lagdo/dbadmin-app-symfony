@@ -63,21 +63,24 @@ class DbAdminListener
     {
         $request = $event->getRequest();
         $route = $request->attributes->get('_route');
+        $configDir = "{$this->projectDir}/config/dbadmin";
         switch($route) {
             case 'dbadmin_page':
             case 'dbadmin_ajax':
             case 'dbadmin_file':
-            case 'app_login':
                 // Register the DbAdmin package.
-                $configDir = "{$this->projectDir}/config/dbadmin";
                 DbAdminPackage::register($configDir, '/jaxon');
                 $this->setTemplateNamespace();
                 break;
             case 'dbaudit_page':
             case 'dbaudit_ajax':
                 // Register the DbAudit package.
-                $configDir = "{$this->projectDir}/config/dbadmin";
                 DbAuditPackage::register($configDir, '/audit/jaxon');
+                $this->setTemplateNamespace();
+                break;
+            case 'app_login':
+                // Register the DbAdmin services.
+                DbAdminPackage::register($configDir, '/jaxon');
                 $this->setTemplateNamespace();
                 break;
             default: // Nothing to do.

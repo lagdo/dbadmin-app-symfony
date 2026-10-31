@@ -4,6 +4,7 @@ namespace DbAdmin\Symfony\Factory;
 
 use Lagdo\DbAdmin\Driver\Utils\TranslatorInterface;
 use Lagdo\DbAdmin\Support\Provider\AuthInterface;
+use Lagdo\DbAdmin\Support\Service\Export\DatabaseReader;
 use Lagdo\DbAdmin\Support\Service\Export\FileSystemInterface;
 
 use function Jaxon\jaxon;
@@ -35,5 +36,13 @@ class DbAdminFactory
     public static function filesystem(): FileSystemInterface
     {
         return jaxon()->di()->g(FileSystemInterface::class);
+    }
+
+    /**
+     * @return DatabaseReader
+     */
+    public static function database(): DatabaseReader
+    {
+        return jaxon()->di()->g(DatabaseReader::class);
     }
 }

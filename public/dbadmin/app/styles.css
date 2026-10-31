@@ -3,10 +3,14 @@
 }
 
 div.pure-g {
-    margin: 3px 0;
+    margin: 5px 0;
 }
 
-#jaxon-dbadmin .btn-select {
+#jaxon-dbadmin .dbadmin-menu-item {
+    cursor: pointer;
+}
+
+#jaxon-dbadmin .btn-select, #jaxon-dbadmin .jaxon-dbadmin-page-header_items {
     margin-top: 0;
     margin-bottom: 0;
 }
@@ -209,6 +213,11 @@ div.pure-g {
     border: none;
     border-radius: 5px;
     position-area: y-end span-x-end;
+}
+
+.alert-wrapper {
+    /* Set a value greater than 40, so the CuteAlert dialog is displayed on top of the Bulma modal. */
+    z-index: 100;
 }
 
 /* Chrome, Safari, Edge, Opera */

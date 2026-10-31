@@ -6,11 +6,18 @@ use DbAdmin\Symfony\Security\DbAuditVoter;
 use Jaxon\Symfony\App\Jaxon;
 use Lagdo\DbAdmin\App\DbAdminPackage;
 use Lagdo\DbAdmin\App\DbAuditPackage;
-use Lagdo\DbAdmin\Support\Facade\FileSystem;
+use Lagdo\DbAdmin\App\Ui\AdminUiBuilder;
+use Lagdo\DbAdmin\App\Ui\AuditUiBuilder;
+use Lagdo\DbAdmin\Support\Facade\Export;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+
+use function flush;
+use function ob_flush;
+use function ob_get_level;
 
 class DbAdminController extends AbstractController
 {
@@ -19,7 +26,8 @@ class DbAdminController extends AbstractController
     public function home(Jaxon $jaxon): Response
     {
         return $this->render('@dbadmin/dbadmin.html.twig', [
-            'jaxon' => $jaxon,
+            'di' => $jaxon->di(),
+            'ui' => AdminUiBuilder::class,
             'package' => DbAdminPackage::class,
         ]);
     }
@@ -36,7 +44,8 @@ class DbAdminController extends AbstractController
     public function audit(Jaxon $jaxon): Response
     {
         return $this->render('@dbadmin/dbaudit.html.twig', [
-            'jaxon' => $jaxon,
+            'di' => $jaxon->di(),
+            'ui' => AuditUiBuilder::class,
             'package' => DbAuditPackage::class,
         ]);
     }
@@ -52,10 +61,31 @@ class DbAdminController extends AbstractController
     #[Route('/export/{filename}', name: 'dbadmin_file', methods: ['GET'])]
     public function export(string $filename): Response
     {
-        $fs = FileSystem::instance();
-        $response = new Response();
-        $response->headers->set('Content-Type', 'text/plain');
-        return $response->setStatusCode(!!$fs ? 200 : 403)
-            ->setContent($fs?->read($filename) ?? 'No export reader set.');
+        $options = Export::options($filename);
+        $exports = Export::export($options);
+        if ($exports === null) {
+            $response = new Response();
+            $response->headers->set('Content-Type', 'text/plain');
+            return $response->setStatusCode(403)
+                ->setContent("Unable to export file $filename.");
+        }
+
+        $response = new StreamedResponse(function() use($exports) {
+            foreach ($exports as $export) {
+                echo $export;
+                if (ob_get_level() > 0) {
+                    ob_flush();
+                }
+                flush();
+            }
+        });
+
+        $response->headers->set('Content-Type', $options->contentType());
+        $response->headers->set('Content-Disposition', $options->contentDisposition());
+        $response->headers->set('Cache-Control', 'no-cache');
+        $response->headers->set('Connection', 'keep-alive');
+        $response->headers->set('X-Accel-Buffering', 'no');
+
+        return $response;
     }
 }

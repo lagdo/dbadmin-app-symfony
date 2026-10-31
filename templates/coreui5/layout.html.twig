@@ -9,10 +9,14 @@
     <meta name="author" content="Thierry Feuzeu">
     <title>Jaxon DbAdmin &mdash; {% block pageTitle %}{% endblock %}</title>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.9.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-9DZ6o3pJWcTwBR8W196XizUEf2kNMD35tkeyWqOB0yzml+nZrEe/13PMCpAIrT4r" crossorigin="anonymous">
     <style>
       html {
         font-size: 14px;
+      }
+      #bootstrap5Modal .modal-dialog {
+        max-width: 800px;
       }
     </style>
 
@@ -21,7 +25,7 @@
   <body>
     <div style="padding-top: 5px;">
       <main>
-          {% block pageContent %}{% endblock %}
+        {% block pageContent %}{% endblock %}
       </main>
     </div>
 
@@ -29,7 +33,28 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.9.0/dist/js/coreui.min.js" integrity="sha384-gf1tanjsJUdqpGpiHABhWprM/7/k8itp69MQWhJGblqf0/0EhOcPA5GPZZE83Br9" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootbox@6.0.0/dist/bootbox.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 
     {% block js %}{% endblock %}
+
+    <script src="/jaxon/dialogs.js"></script>
+    <script type="javascript">
+        jaxon.dom.ready(() => jaxon.dialog.config({
+            "labels":{
+                "confirm":{
+                    "yes":"Yes",
+                    "no":"No"
+                }
+            },
+            "defaults":{
+                "modal":"bootbox",
+                "toast":"notyf",
+                "alert":"sweetalert",
+                "confirm":"sweetalert"
+            }
+        }));
+    </script>
   </body>
 </html>

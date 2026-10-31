@@ -1,0 +1,20 @@
+{% extends "bulma/layout.html.twig" %}
+
+{% block css %}
+{{ jxnCss()|raw }}
+{% endblock %}
+
+{% block js %}
+{{ jxnJs()|raw }}
+
+{{ jxnScript()|raw }}
+<script type='text/javascript'>
+  {{ jxnPackage(package, 'ready')|raw }};
+</script>
+{% endblock %}
+
+{% block pageContent %}
+        <div style="padding-right: 1rem; padding-left: 1rem;">
+          {{ di.g(ui).layout()|raw }}
+        </div>
+{% endblock %}

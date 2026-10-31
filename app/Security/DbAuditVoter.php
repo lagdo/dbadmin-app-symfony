@@ -35,8 +35,7 @@ final class DbAuditVoter extends Voter
     protected function voteOnAttribute(string $attribute, mixed $subject,
         TokenInterface $token, ?Vote $vote = null): bool
     {
-        $user = $token->getUser();
-        return $this->jaxon->di()->g(DbAuditPackage::class)
-            ->checkAccess($user->getUserIdentifier());
+        $user = $token->getUser()->getUserIdentifier();
+        return $this->jaxon->di()->g(DbAuditPackage::class)->checkAuditAccess($user);
     }
 }

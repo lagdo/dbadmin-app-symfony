@@ -29,6 +29,9 @@ services:
     Lagdo\DbAdmin\Support\Service\Export\FileSystemInterface:
         public: true
         factory: ['DbAdmin\Symfony\Factory\DbAdminFactory', 'filesystem']
+    Lagdo\DbAdmin\Support\Service\Export\DatabaseReader:
+        public: true
+        factory: ['DbAdmin\Symfony\Factory\DbAdminFactory', 'database']
     jaxon.service_locator:
         public: true
         class: Symfony\Component\DependencyInjection\ServiceLocator
