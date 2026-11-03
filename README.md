@@ -56,14 +56,17 @@ Jaxon DbAdmin currently implements the following features:
 - Navigate through related tables.
 - Save the executed queries in an audit logs database.
 - Show the audit logs in a dedicated page, with restricted access.
+- Run queries with a QueryProcessor optimized for low memory usage.
+- Multiple UI templates available, based on Bootstrap 5 or Bulma.
 
 The following features are planned for future releases:
 
+- Defer the database imports in a worker.
 - An advanced GUI-based query builder.
 - An AI assistant for building and running queries.
 - An advanced SQL parser:
   - https://github.com/tobymao/sqlglot
-- Alternative UI templates, with WebAwesome, TailwindCSS and Bulma.
+- Alternative UI templates, with TailwindCSS and WebAwesome.
 - Use an advanced UI component for HTML tables.
 - Save and display more data in the audit logs.
 - Automated tests.
