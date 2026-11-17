@@ -138,14 +138,12 @@ jaxon.dbadmin = {};
 
     /**
      * @param {string} url
-     * @param {string} filename
      *
      * @returns {void}
      */
-    self.downloadFile = (url, filename) => {
+    self.downloadFile = (url) => {
         const downloadLink = document.createElement("a");
         downloadLink.href = url;
-        downloadLink.download = filename;
         document.body.appendChild(downloadLink);
         downloadLink.click();
         document.body.removeChild(downloadLink);
@@ -310,23 +308,38 @@ jaxon.dom.ready(() => {
         cursor: jaxon.config.cursor.update,
     };
 
+    const cursorUpdateDisabled = ({ type, name, method }) => type === 'class' &&
+        jaxon.dbadmin.noCursor.some(({ func }) => func === `${name}.${method}`);
+
     // Replace the default Jaxon defined cursor with our custom spinner.
     jaxon.config.cursor.update = {
-        onRequest: function() {
-            if(spin.count++ === 0)
+        onRequest: function ({ func = {} }) {
+            if (cursorUpdateDisabled(func)) {
+                return;
+            }
+
+            if (spin.count++ === 0)
             {
                 spin.spinner.spin(document.body);
                 spin.cursor.onRequest();
             }
         },
-        onComplete: function() {
+        onComplete: function({ func = {} }) {
+            if (cursorUpdateDisabled(func)) {
+                return;
+            }
+
             if(--spin.count === 0)
             {
                 spin.spinner.stop();
                 spin.cursor.onComplete();
             }
         },
-        onFailure: function() {
+        onFailure: function({ func = {} }) {
+            if (cursorUpdateDisabled(func)) {
+                return;
+            }
+
             if(--spin.count === 0)
             {
                 spin.spinner.stop();

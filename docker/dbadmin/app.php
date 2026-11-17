@@ -2,18 +2,6 @@
 
 return [
     /*
-     * An auth service defined in services/auth.php.
-     */
-    // 'auth' => null, // No auth.
-    'auth' => 'default',
-
-    /*
-     * An export service defined in services/export.php.
-     */
-    // 'export' => null, // No export.
-    'export' => 'default',
-
-    /*
      * A secret service defined in services/secret.php.
      * infisical, aws-secret, gcp-secret, openbao, or azure-vault.
      */
@@ -30,7 +18,7 @@ return [
          */
         'template' => 'bulma',
         'assets' => [
-            'url' => '/dbadmin',
+            'url' => '/dbadmin-0.15.1',
         ],
         'query' => [
             // 'cm' for CodeMirror or 'ace' for Ace Editor.

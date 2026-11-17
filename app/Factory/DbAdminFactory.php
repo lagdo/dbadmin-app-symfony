@@ -4,8 +4,8 @@ namespace DbAdmin\Symfony\Factory;
 
 use Lagdo\DbAdmin\Driver\Utils\TranslatorInterface;
 use Lagdo\DbAdmin\Support\Provider\AuthInterface;
-use Lagdo\DbAdmin\Support\Service\Export\DatabaseReader;
-use Lagdo\DbAdmin\Support\Service\Export\FileSystemInterface;
+use Lagdo\DbAdmin\Support\Service\Export\ExportService;
+use Lagdo\DbAdmin\Support\Service\Import\ImportService;
 
 use function Jaxon\jaxon;
 
@@ -31,18 +31,18 @@ class DbAdminFactory
     }
 
     /**
-     * @return FileSystemInterface
+     * @return ExportService
      */
-    public static function filesystem(): FileSystemInterface
+    public static function export(): ExportService
     {
-        return jaxon()->di()->g(FileSystemInterface::class);
+        return jaxon()->di()->g(ExportService::class);
     }
 
     /**
-     * @return DatabaseReader
+     * @return ImportService
      */
-    public static function database(): DatabaseReader
+    public static function import(): ImportService
     {
-        return jaxon()->di()->g(DatabaseReader::class);
+        return jaxon()->di()->g(ImportService::class);
     }
 }

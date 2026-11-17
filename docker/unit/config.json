@@ -30,6 +30,11 @@
     "applications": {
         "dbadmin": {
             "type": "php",
+            "processes": {
+                "max": 5,
+                "spare": 2,
+                "idle_timeout": 30
+            },
             "targets": {
                 "direct": {
                     "root": "/var/www/public/"

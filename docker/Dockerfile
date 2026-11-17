@@ -1,4 +1,4 @@
-ARG DBADMIN_VERSION=0.14.0
+ARG DBADMIN_VERSION=0.15.0
 
 # Root builder
 FROM lagdo/alpine-php-free-unit
@@ -11,7 +11,7 @@ ENV PHP_USER=${PHP_USER}
 ENV PHP_UID=${PHP_UID}
 ENV PHP_GID=${PHP_GID}
 
-RUN install-php-extensions pdo pdo_sqlite sqlite3 pdo_mysql mysqlnd mysqli pdo_pgsql pgsql
+RUN install-php-extensions bz2 pdo pdo_sqlite sqlite3 pdo_mysql mysqlnd mysqli pdo_pgsql pgsql
 
 # Configure Free Unit
 COPY docker/unit/config.json /docker-entrypoint.d/config.json

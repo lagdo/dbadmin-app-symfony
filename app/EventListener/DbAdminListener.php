@@ -67,7 +67,8 @@ class DbAdminListener
         switch($route) {
             case 'dbadmin_page':
             case 'dbadmin_ajax':
-            case 'dbadmin_file':
+            case 'dbadmin_export':
+            case 'dbadmin_import':
                 // Register the DbAdmin package.
                 DbAdminPackage::register($configDir, '/jaxon');
                 $this->setTemplateNamespace();

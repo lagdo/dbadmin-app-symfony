@@ -8,8 +8,10 @@ use Lagdo\DbAdmin\App\DbAdminPackage;
 use Lagdo\DbAdmin\App\DbAuditPackage;
 use Lagdo\DbAdmin\App\Ui\AdminUiBuilder;
 use Lagdo\DbAdmin\App\Ui\AuditUiBuilder;
-use Lagdo\DbAdmin\Support\Facade\Export;
+use Lagdo\DbAdmin\Support\Service\Export\ExportService;
+use Lagdo\DbAdmin\Support\Service\Import\ImportService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Routing\Attribute\Route;
@@ -58,11 +60,11 @@ class DbAdminController extends AbstractController
     }
 
     #[IsGranted('ROLE_USER')]
-    #[Route('/export/{filename}', name: 'dbadmin_file', methods: ['GET'])]
-    public function export(string $filename): Response
+    #[Route('/export/{filename}', name: 'dbadmin_export', methods: ['GET'])]
+    public function export(Request $request, ExportService $service, string $filename): Response
     {
-        $options = Export::options($filename);
-        $exports = Export::export($options);
+        $options = $service->options($filename, ['timeLimit' => 0]);
+        $exports = $options === null ? null : $service->export($options);
         if ($exports === null) {
             $response = new Response();
             $response->headers->set('Content-Type', 'text/plain');
@@ -70,9 +72,47 @@ class DbAdminController extends AbstractController
                 ->setContent("Unable to export file $filename.");
         }
 
+        // Unlock the session before starting the streaming.
+        $request->getSession()->save();
+
         $response = new StreamedResponse(function() use($exports) {
             foreach ($exports as $export) {
                 echo $export;
+                if (ob_get_level() > 0) {
+                    ob_flush();
+                }
+                flush();
+            }
+        });
+
+        $response->headers->set('Content-Type', $options->contentType());
+        $response->headers->set('Content-Disposition', $options->contentDisposition());
+        $response->headers->set('Cache-Control', 'no-cache');
+        $response->headers->set('Connection', 'keep-alive');
+        $response->headers->set('X-Accel-Buffering', 'no');
+
+        return $response;
+    }
+
+    #[IsGranted('ROLE_USER')]
+    #[Route('/import/{filename}', name: 'dbadmin_import', methods: ['GET'])]
+    public function import(Request $request, ImportService $service, string $filename): Response
+    {
+        $options = $service->options($filename, ['timeLimit' => 0]);
+        $imports = $options === null ? null : $service->import($options);
+        if ($imports === null) {
+            $response = new Response();
+            $response->headers->set('Content-Type', 'text/plain');
+            return $response->setStatusCode(403)
+                ->setContent("Unable to import file $filename.");
+        }
+
+        // Unlock the session before starting the streaming.
+        $request->getSession()->save();
+
+        $response = new StreamedResponse(function() use($imports) {
+            foreach ($imports as $import) {
+                echo $import;
                 if (ob_get_level() > 0) {
                     ob_flush();
                 }

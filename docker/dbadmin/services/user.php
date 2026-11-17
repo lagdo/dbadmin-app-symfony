@@ -6,8 +6,8 @@ use DbAdmin\Symfony\Facade\UrlGenerator;
 use Lagdo\DbAdmin\Support\Provider\AuthInterface;
 
 return [
-    // 'default' => null, // No auth.
-    'default' => fn() => new class implements AuthInterface {
+    // 'auth' => null, // No auth.
+    'auth' => fn() => new class implements AuthInterface {
         public function userId(): string
         {
             return Security::getUser()->getEmail();

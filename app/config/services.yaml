@@ -26,12 +26,12 @@ services:
     Lagdo\DbAdmin\Driver\Utils\TranslatorInterface:
         public: true
         factory: ['DbAdmin\Symfony\Factory\DbAdminFactory', 'trans']
-    Lagdo\DbAdmin\Support\Service\Export\FileSystemInterface:
+    Lagdo\DbAdmin\Support\Service\Export\ExportService:
         public: true
-        factory: ['DbAdmin\Symfony\Factory\DbAdminFactory', 'filesystem']
-    Lagdo\DbAdmin\Support\Service\Export\DatabaseReader:
+        factory: ['DbAdmin\Symfony\Factory\DbAdminFactory', 'export']
+    Lagdo\DbAdmin\Support\Service\Import\ImportService:
         public: true
-        factory: ['DbAdmin\Symfony\Factory\DbAdminFactory', 'database']
+        factory: ['DbAdmin\Symfony\Factory\DbAdminFactory', 'import']
     jaxon.service_locator:
         public: true
         class: Symfony\Component\DependencyInjection\ServiceLocator

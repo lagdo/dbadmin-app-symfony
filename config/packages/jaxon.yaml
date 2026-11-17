@@ -8,28 +8,19 @@ parameters:
             assets:
                 export: true
                 minify: true
-                uri: /jaxon/app-0.14.0
-                dir: '%kernel.project_dir%/public/jaxon/app-0.14.0'
+                uri: /jaxon/app-0.15.0
+                dir: '%kernel.project_dir%/public/jaxon/app-0.15.0'
                 # file' => '',
                 include:
                     dialog_code: false
             dialogs:
-                # Defined in the services/template.php file.
+                # The dialogs libraries are defined in the dbadmin/services/template.php file.
                 lib:
-                    use: [bootstrap5, bulma, sweetalert, notyf]
+                    use: [bootstrap5, bulma, sweetalert, cute, notyf]
             storage:
                 stores:
-                    uploads:
-                        adapter: local
-                        dir: '%kernel.project_dir%/var/uploads'
-                    exports:
-                        adapter: local
-                        dir: '%kernel.project_dir%/var/exports'
-            uploads:
-                enabled: true
-                files:
-                    sql_files:
-                        storage: uploads
+            upload:
+                enabled: false
 
         lib:
             core:
