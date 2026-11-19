@@ -30,8 +30,9 @@ USER ${PHP_USER}
 
 # Install Composer packages
 RUN cd /var/www && \
-    cp .env.docker .env && \
-    composer install --no-dev --prefer-dist --no-interaction --optimize-autoloader
+  cp .env.docker .env && \
+  composer install --no-dev --prefer-dist --no-interaction --optimize-autoloader && \
+  composer run dbadmin-create-localdb
 
 WORKDIR /var/www
 EXPOSE 8080
